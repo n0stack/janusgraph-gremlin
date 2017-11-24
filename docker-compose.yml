@@ -1,0 +1,17 @@
+version: '2'
+services:
+  janusgraph:
+    image: hotter/janusgraph-gremlin
+    command:
+      - sh
+      - -c
+      - "sleep 10 && bin/gremlin-server.sh"
+    ports:
+      - "8182:8182"
+    depends_on:
+      - elasticsearch
+  elasticsearch:
+    image: elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
