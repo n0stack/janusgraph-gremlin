@@ -1,11 +1,15 @@
 version: '2'
 services:
   janusgraph:
-    image: hotter/janusgraph-gremlin
+    image: n0stack/janusgraph-gremlin
+    build: .
     command:
-      - sh
-      - -c
-      - "sleep 10 && bin/gremlin-server.sh"
+      - dockerize
+      - -wait
+      - tcp://elasticsearch:9200
+      - -timeout
+      - 30s
+      - bin/gremlin-server.sh
     ports:
       - "8182:8182"
     depends_on:
