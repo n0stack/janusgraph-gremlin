@@ -10,6 +10,8 @@ RUN curl -fsSLO https://github.com/JanusGraph/janusgraph/releases/download/v${JG
 
 WORKDIR janusgraph-${JG_VERSION}-hadoop2
 COPY conf/gremlin-server/janusgraph-cassandra-es-server.properties conf/gremlin-server/janusgraph-cassandra-es-server.properties
+COPY conf/gremlin-server/gremlin-server.yaml conf/gremlin-server/gremlin-server.yaml
+RUN ["bin/gremlin-server.sh", "-i", "org.apache.tinkerpop", "gremlin-python", "3.2.6"]
 
 RUN curl -fsSLO https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
     tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
