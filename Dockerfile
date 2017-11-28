@@ -9,6 +9,8 @@ RUN curl -fsSLO https://github.com/JanusGraph/janusgraph/releases/download/v${JG
 
 WORKDIR janusgraph-${JG_VERSION}-hadoop2
 COPY conf/gremlin-server/janusgraph-cassandra-es-server.properties conf/gremlin-server/janusgraph-cassandra-es-server.properties
+COPY conf/gremlin-server/gremlin-server.yaml conf/gremlin-server/gremlin-server.yaml
+RUN ["bin/gremlin-server.sh", "-i", "org.apache.tinkerpop", "gremlin-python", "3.2.6"]
 
 EXPOSE 8182
 CMD ["bin/gremlin-server.sh"]

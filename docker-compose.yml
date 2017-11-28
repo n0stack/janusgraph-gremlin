@@ -5,7 +5,7 @@ services:
     command:
       - sh
       - -c
-      - "sleep 10 && bin/gremlin-server.sh"
+      - "sleep 15 && bin/gremlin-server.sh"
     ports:
       - "8182:8182"
     depends_on:
